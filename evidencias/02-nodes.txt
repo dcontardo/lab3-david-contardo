@@ -1,0 +1,2 @@
+NAME    STATUS   ROLES    AGE   VERSION   INTERNAL-IP       EXTERNAL-IP   OS-IMAGE                      KERNEL-VERSION                         CONTAINER-RUNTIME
+curso   Ready    <none>   31d   v1.37.0   192.168.214.134   <none>        Rocky Linux 9.8 (Blue Onyx)   5.14.0-687.41.1.el9_8.x86_64 (amd64)   containerd://2.3.3

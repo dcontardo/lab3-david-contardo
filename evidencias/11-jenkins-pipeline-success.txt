@@ -1,0 +1,491 @@
+Started by user David Contardo
+Obtained Jenkinsfile from git https://github.com/dcontardo/lab3-david-contardo.git
+[Pipeline] Start of Pipeline
+[Pipeline] readTrusted
+Obtained agent.yaml from git https://github.com/dcontardo/lab3-david-contardo.git
+[Pipeline] podTemplate
+[Pipeline] {
+[Pipeline] node
+Created Pod: kubernetes-lab3 ns-david-contardo/lab3-david-contardo-4-nx38k-g43sg-d8v89
+[PodInfo] ns-david-contardo/lab3-david-contardo-4-nx38k-g43sg-d8v89
+	Container [jnlp] waiting [ContainerCreating] No message
+	Container [kaniko] waiting [ContainerCreating] No message
+	Container [kubectl] waiting [ContainerCreating] No message
+	Container [node] waiting [ContainerCreating] No message
+	Container [skopeo] waiting [ContainerCreating] No message
+	Pod [Pending][PodSandboxNotReady] no pod sandbox exists
+	Pod [Pending][ContainersNotReady] containers with unready status: [node kaniko kubectl skopeo jnlp]
+[PodInfo] ns-david-contardo/lab3-david-contardo-4-nx38k-g43sg-d8v89
+	Container [jnlp] waiting [ContainerCreating] No message
+	Container [kaniko] waiting [ContainerCreating] No message
+	Container [kubectl] waiting [ContainerCreating] No message
+	Container [node] waiting [ContainerCreating] No message
+	Container [skopeo] waiting [ContainerCreating] No message
+	Pod [Pending][PodSandboxNotReady] no pod sandbox exists
+	Pod [Pending][ContainersNotReady] containers with unready status: [node kaniko kubectl skopeo jnlp]
+[PodInfo] ns-david-contardo/lab3-david-contardo-4-nx38k-g43sg-d8v89
+	Container [jnlp] waiting [ContainerCreating] No message
+	Container [kaniko] waiting [ContainerCreating] No message
+	Container [kubectl] waiting [ContainerCreating] No message
+	Container [node] waiting [ContainerCreating] No message
+	Container [skopeo] waiting [ContainerCreating] No message
+	Pod [Pending][ContainersNotReady] containers with unready status: [node kaniko kubectl skopeo jnlp]
+Agent lab3-david-contardo-4-nx38k-g43sg-d8v89 is provisioned from template lab3-david-contardo_4-nx38k-g43sg
+---
+apiVersion: "v1"
+kind: "Pod"
+metadata:
+  annotations:
+    kubernetes.jenkins.io/last-refresh: "1791125270805"
+    buildUrl: "http://192.168.214.128:8080/job/lab3-david-contardo/4/"
+    runUrl: "job/lab3-david-contardo/4/"
+  labels:
+    app: "jenkins-agent-lab3"
+    jenkins: "slave"
+    jenkins/label-digest: "994dfddcb2a9c7d21db02f04baedee251e881252"
+    jenkins/label: "lab3-david-contardo_4-nx38k"
+    kubernetes.jenkins.io/controller: "http___192_168_214_128_8080x"
+  name: "lab3-david-contardo-4-nx38k-g43sg-d8v89"
+  namespace: "ns-david-contardo"
+spec:
+  containers:
+  - args:
+    - "cat"
+    command:
+    - "/bin/sh"
+    - "-c"
+    image: "node:24-alpine"
+    name: "node"
+    tty: true
+    volumeMounts:
+    - mountPath: "/home/jenkins/agent"
+      name: "workspace-volume"
+      readOnly: false
+    workingDir: "/home/jenkins/agent"
+  - args:
+    - "tail -f /dev/null"
+    command:
+    - "/busybox/sh"
+    - "-c"
+    image: "gcr.io/kaniko-project/executor:v1.21.0-debug"
+    name: "kaniko"
+    volumeMounts:
+    - mountPath: "/home/jenkins/agent"
+      name: "workspace-volume"
+      readOnly: false
+    workingDir: "/home/jenkins/agent"
+  - args:
+    - "tail -f /dev/null"
+    command:
+    - "/bin/sh"
+    - "-c"
+    image: "alpine/k8s:1.37.0"
+    name: "kubectl"
+    volumeMounts:
+    - mountPath: "/home/jenkins/agent"
+      name: "workspace-volume"
+      readOnly: false
+    workingDir: "/home/jenkins/agent"
+  - args:
+    - "tail -f /dev/null"
+    command:
+    - "/bin/sh"
+    - "-c"
+    image: "quay.io/skopeo/stable:latest"
+    name: "skopeo"
+    volumeMounts:
+    - mountPath: "/home/jenkins/agent"
+      name: "workspace-volume"
+      readOnly: false
+    workingDir: "/home/jenkins/agent"
+  - env:
+    - name: "JENKINS_SECRET"
+      value: "********"
+    - name: "JENKINS_AGENT_NAME"
+      value: "lab3-david-contardo-4-nx38k-g43sg-d8v89"
+    - name: "JENKINS_WEB_SOCKET"
+      value: "true"
+    - name: "REMOTING_OPTS"
+      value: "-noReconnectAfter 1d"
+    - name: "JENKINS_NAME"
+      value: "lab3-david-contardo-4-nx38k-g43sg-d8v89"
+    - name: "JENKINS_AGENT_WORKDIR"
+      value: "/home/jenkins/agent"
+    - name: "JENKINS_URL"
+      value: "http://192.168.214.128:8080/"
+    image: "jenkins/inbound-agent:3391.va_37fa_a_305d6d-1-jdk25"
+    name: "jnlp"
+    resources:
+      requests:
+        memory: "256Mi"
+        cpu: "100m"
+    volumeMounts:
+    - mountPath: "/home/jenkins/agent"
+      name: "workspace-volume"
+      readOnly: false
+  nodeSelector:
+    kubernetes.io/os: "linux"
+  restartPolicy: "Never"
+  serviceAccountName: "jenkins-agent"
+  volumes:
+  - emptyDir:
+      medium: ""
+    name: "workspace-volume"
+
+Running on lab3-david-contardo-4-nx38k-g43sg-d8v89 in /home/jenkins/agent/workspace/lab3-david-contardo
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+Cloning the remote Git repository
+Cloning repository https://github.com/dcontardo/lab3-david-contardo.git
+ > /usr/bin/git init /home/jenkins/agent/workspace/lab3-david-contardo # timeout=10
+Fetching upstream changes from https://github.com/dcontardo/lab3-david-contardo.git
+ > /usr/bin/git --version # timeout=10
+ > git --version # 'git version 2.47.3'
+ > /usr/bin/git fetch --tags --force --progress -- https://github.com/dcontardo/lab3-david-contardo.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > /usr/bin/git config remote.origin.url https://github.com/dcontardo/lab3-david-contardo.git # timeout=10
+ > /usr/bin/git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+Checking out Revision 8fc136f2694f94b23aceb62c8cf09c542624c827 (refs/remotes/origin/main)
+ > /usr/bin/git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+ > /usr/bin/git config core.sparsecheckout # timeout=10
+ > /usr/bin/git checkout -f 8fc136f2694f94b23aceb62c8cf09c542624c827 # timeout=10
+Commit message: "Ajustar despliegue de recursos Kubernetes"
+ > /usr/bin/git rev-list --no-walk 7c242e004b3e59a0f31bf3a0a17d691e1230ee23 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] container
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (install)
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
++ corepack enable
+[Pipeline] sh
++ corepack prepare pnpm@12.3.4 --activate
+Preparing pnpm@12.3.4 for immediate activation...
+[Pipeline] sh
++ pnpm install --frozen-lockfile
+Downloading the pnpm 12.3.4 binary for linux-x64...
+? Verifying lockfile against supply-chain policies (670 entries)...
+Packages are hard linked from the content-addressable store to the virtual store.
+  Content-addressable store is at: /home/jenkins/agent/.pnpm-store/v11
+  Virtual store is at:             node_modules/.pnpm
+Progress: resolved 643, reused 0, downloaded 387, added 384
+Progress: resolved 643, reused 0, downloaded 643, added 640
+✓ Lockfile passes supply-chain policies (670 entries in 4.1s)
+Lockfile is up to date, resolution step is skipped
+Packages: +643
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 643, reused 0, downloaded 643, added 643, done
+
+dependencies:
++ @nestjs/common 11.1.24
++ @nestjs/core 11.1.24
++ @nestjs/platform-express 11.1.24
++ reflect-metadata 0.2.2
++ rxjs 7.8.2
+
+devDependencies:
++ @eslint/eslintrc 3.3.5
++ @eslint/js 9.39.4
++ @nestjs/cli 11.0.21
++ @nestjs/schematics 11.1.0
++ @nestjs/testing 11.1.24
++ @types/express 5.0.6
++ @types/jest 30.0.0
++ @types/node 24.12.4
++ @types/supertest 7.2.0
++ eslint 9.39.4
++ eslint-config-prettier 10.1.8
++ eslint-plugin-prettier 5.5.6
++ globals 17.6.0
++ jest 30.4.2
++ prettier 3.8.3
++ source-map-support 0.5.21
++ supertest 7.2.2
++ ts-jest 29.4.11
++ ts-loader 9.6.0
++ ts-node 10.9.2
++ tsconfig-paths 4.2.0
++ typescript 5.9.3
++ typescript-eslint 8.60.0
+
+Done in 4.3s using pnpm v12.3.4
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (test)
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
++ pnpm test
+$ jest
+PASS src/env-config.spec.ts
+PASS src/app.controller.spec.ts
+
+Test Suites: 2 passed, 2 total
+Tests:       5 passed, 5 total
+Snapshots:   0 total
+Time:        0.945 s
+Ran all test suites.
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (build)
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
++ /kaniko/executor --context /home/jenkins/agent/workspace/lab3-david-contardo --dockerfile /home/jenkins/agent/workspace/lab3-david-contardo/Dockerfile --destination dcontardo/lab3:david-contardo --no-push --tar-path /home/jenkins/agent/workspace/lab3-david-contardo/lab3.tar
+[36mINFO[0m[0000] Resolved base name node:24-alpine to builder 
+[36mINFO[0m[0000] Resolved base name node:24-alpine to production 
+[36mINFO[0m[0000] Using dockerignore file: /home/jenkins/agent/workspace/lab3-david-contardo/.dockerignore 
+[36mINFO[0m[0000] Retrieving image manifest node:24-alpine     
+[36mINFO[0m[0000] Retrieving image node:24-alpine from registry index.docker.io 
+[36mINFO[0m[0001] Retrieving image manifest node:24-alpine     
+[36mINFO[0m[0001] Returning cached image manifest              
+[36mINFO[0m[0001] Built cross stage deps: map[0:[/app/dist]]   
+[36mINFO[0m[0001] Retrieving image manifest node:24-alpine     
+[36mINFO[0m[0001] Returning cached image manifest              
+[36mINFO[0m[0001] Executing 0 build triggers                   
+[36mINFO[0m[0001] Building stage 'node:24-alpine' [idx: '0', base-idx: '-1'] 
+[36mINFO[0m[0001] Unpacking rootfs as cmd RUN corepack enable requires it. 
+[36mINFO[0m[0003] WORKDIR /app                                 
+[36mINFO[0m[0003] Cmd: workdir                                 
+[36mINFO[0m[0003] Changed working directory to /app            
+[36mINFO[0m[0003] Creating directory /app with uid -1 and gid -1 
+[36mINFO[0m[0003] Taking snapshot of files...                  
+[36mINFO[0m[0003] RUN corepack enable                          
+[36mINFO[0m[0003] Initializing snapshotter ...                 
+[36mINFO[0m[0003] Taking snapshot of full filesystem...        
+[36mINFO[0m[0013] Cmd: /bin/sh                                 
+[36mINFO[0m[0013] Args: [-c corepack enable]                   
+[36mINFO[0m[0013] Running: [/bin/sh -c corepack enable]        
+[36mINFO[0m[0013] Taking snapshot of full filesystem...        
+[36mINFO[0m[0013] COPY package.json pnpm-lock.yaml ./          
+[36mINFO[0m[0013] Taking snapshot of files...                  
+[36mINFO[0m[0013] RUN pnpm install --frozen-lockfile --allow-build=@nestjs/core --allow-build=unrs-resolver 
+[36mINFO[0m[0013] Cmd: /bin/sh                                 
+[36mINFO[0m[0013] Args: [-c pnpm install --frozen-lockfile --allow-build=@nestjs/core --allow-build=unrs-resolver] 
+[36mINFO[0m[0013] Running: [/bin/sh -c pnpm install --frozen-lockfile --allow-build=@nestjs/core --allow-build=unrs-resolver] 
+! Corepack is about to download https://registry.npmjs.org/pnpm/-/pnpm-12.9.1.tgz
+Downloading the pnpm 12.9.1 binary for linux-x64...
+? Verifying lockfile against supply-chain policies (670 entries)...
+Packages are hard linked from the content-addressable store to the virtual store.
+  Content-addressable store is at: /root/.local/share/pnpm/store/v11
+  Virtual store is at:             node_modules/.pnpm
+Progress: resolved 643, reused 0, downloaded 612, added 608
+✓ Lockfile passes supply-chain policies (670 entries in 2.2s)
+Lockfile is up to date, resolution step is skipped
+Packages: +643
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 643, reused 0, downloaded 643, added 643, done
+.../node_modules/@nestjs/core postinstall$ opencollective || exit 0
+.../node_modules/unrs-resolver postinstall$ node postinstall.js
+.../node_modules/unrs-resolver postinstall: Done
+.../node_modules/@nestjs/core postinstall:                            Thanks for installing nest 
+.../node_modules/@nestjs/core postinstall:                  Please consider donating to our open collective
+.../node_modules/@nestjs/core postinstall:                         to help us maintain this package.
+.../node_modules/@nestjs/core postinstall:                                          
+.../node_modules/@nestjs/core postinstall:                         Number of contributors: undefined
+.../node_modules/@nestjs/core postinstall:                              Number of backers: 1220
+.../node_modules/@nestjs/core postinstall:                              Annual budget: $121,852
+.../node_modules/@nestjs/core postinstall:                              Current balance: $21,004
+.../node_modules/@nestjs/core postinstall:                                          
+.../node_modules/@nestjs/core postinstall:              Become a partner: https://opencollective.com/nest/donate
+.../node_modules/@nestjs/core postinstall:                                          
+.../node_modules/@nestjs/core postinstall: Done
+
+dependencies:
++ @nestjs/common 11.1.24
++ @nestjs/core 11.1.24
++ @nestjs/platform-express 11.1.24
++ reflect-metadata 0.2.2
++ rxjs 7.8.2
+
+devDependencies:
++ @eslint/eslintrc 3.3.5
++ @eslint/js 9.39.4
++ @nestjs/cli 11.0.21
++ @nestjs/schematics 11.1.0
++ @nestjs/testing 11.1.24
++ @types/express 5.0.6
++ @types/jest 30.0.0
++ @types/node 24.12.4
++ @types/supertest 7.2.0
++ eslint 9.39.4
++ eslint-config-prettier 10.1.8
++ eslint-plugin-prettier 5.5.6
++ globals 17.6.0
++ jest 30.4.2
++ prettier 3.8.3
++ source-map-support 0.5.21
++ supertest 7.2.2
++ ts-jest 29.4.11
++ ts-loader 9.6.0
++ ts-node 10.9.2
++ tsconfig-paths 4.2.0
++ typescript 5.9.3
++ typescript-eslint 8.60.0
+
+Done in 2.7s using pnpm v12.9.1
+[36mINFO[0m[0017] Taking snapshot of full filesystem...        
+[36mINFO[0m[0029] COPY . .                                     
+[36mINFO[0m[0029] Taking snapshot of files...                  
+[36mINFO[0m[0029] RUN pnpm build                               
+[36mINFO[0m[0029] Cmd: /bin/sh                                 
+[36mINFO[0m[0029] Args: [-c pnpm build]                        
+[36mINFO[0m[0029] Running: [/bin/sh -c pnpm build]             
+✓ Lockfile passes supply-chain policies (verified 12s ago)
+Lockfile is up to date, resolution step is skipped
+Already up to date
+Done in 357ms using pnpm v12.9.1
+$ nest build
+[36mINFO[0m[0032] Taking snapshot of full filesystem...        
+[36mINFO[0m[0033] Saving file app/dist for later use           
+[36mINFO[0m[0033] Deleting filesystem...                       
+[36mINFO[0m[0033] Retrieving image manifest node:24-alpine     
+[36mINFO[0m[0033] Returning cached image manifest              
+[36mINFO[0m[0033] Executing 0 build triggers                   
+[36mINFO[0m[0033] Building stage 'node:24-alpine' [idx: '1', base-idx: '-1'] 
+[36mINFO[0m[0033] Unpacking rootfs as cmd RUN corepack enable requires it. 
+[36mINFO[0m[0036] WORKDIR /app                                 
+[36mINFO[0m[0036] Cmd: workdir                                 
+[36mINFO[0m[0036] Changed working directory to /app            
+[36mINFO[0m[0036] Creating directory /app with uid -1 and gid -1 
+[36mINFO[0m[0036] Taking snapshot of files...                  
+[36mINFO[0m[0036] ENV NODE_ENV=production                      
+[36mINFO[0m[0036] RUN corepack enable                          
+[36mINFO[0m[0036] Initializing snapshotter ...                 
+[36mINFO[0m[0036] Taking snapshot of full filesystem...        
+[36mINFO[0m[0036] Cmd: /bin/sh                                 
+[36mINFO[0m[0036] Args: [-c corepack enable]                   
+[36mINFO[0m[0036] Running: [/bin/sh -c corepack enable]        
+[36mINFO[0m[0036] Taking snapshot of full filesystem...        
+[36mINFO[0m[0036] COPY package.json pnpm-lock.yaml ./          
+[36mINFO[0m[0036] Taking snapshot of files...                  
+[36mINFO[0m[0036] RUN pnpm install --frozen-lockfile --prod --allow-build=@nestjs/core --allow-build=unrs-resolver 
+[36mINFO[0m[0036] Cmd: /bin/sh                                 
+[36mINFO[0m[0036] Args: [-c pnpm install --frozen-lockfile --prod --allow-build=@nestjs/core --allow-build=unrs-resolver] 
+[36mINFO[0m[0036] Running: [/bin/sh -c pnpm install --frozen-lockfile --prod --allow-build=@nestjs/core --allow-build=unrs-resolver] 
+! Corepack is about to download https://registry.npmjs.org/pnpm/-/pnpm-12.9.1.tgz
+Downloading the pnpm 12.9.1 binary for linux-x64...
+? Verifying lockfile against supply-chain policies (670 entries)...
+Packages are hard linked from the content-addressable store to the virtual store.
+  Content-addressable store is at: /root/.local/share/pnpm/store/v11
+  Virtual store is at:             node_modules/.pnpm
+✓ Lockfile passes supply-chain policies (670 entries in 2.9s)
+Lockfile is up to date, resolution step is skipped
+Packages: +104
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 104, reused 0, downloaded 104, added 104, done
+.../node_modules/@nestjs/core postinstall$ opencollective || exit 0
+.../node_modules/@nestjs/core postinstall: Done
+
+dependencies:
++ @nestjs/common 11.1.24
++ @nestjs/core 11.1.24
++ @nestjs/platform-express 11.1.24
++ reflect-metadata 0.2.2
++ rxjs 7.8.2
+
+Done in 3.1s using pnpm v12.9.1
+[36mINFO[0m[0041] Taking snapshot of full filesystem...        
+[36mINFO[0m[0062] COPY --from=builder /app/dist ./dist         
+[36mINFO[0m[0062] Taking snapshot of files...                  
+[36mINFO[0m[0062] EXPOSE 3000                                  
+[36mINFO[0m[0062] Cmd: EXPOSE                                  
+[36mINFO[0m[0062] Adding exposed port: 3000/tcp                
+[36mINFO[0m[0062] USER node                                    
+[36mINFO[0m[0062] Cmd: USER                                    
+[36mINFO[0m[0062] CMD ["node", "dist/main"]                    
+[36mINFO[0m[0063] Skipping push to container registry due to --no-push flag 
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (push)
+[Pipeline] container
+[Pipeline] {
+[Pipeline] withCredentials
+Masking supported pattern matches of $DOCKER_PASSWORD or $GHCR_PASSWORD
+[Pipeline] {
+[Pipeline] sh
++ mkdir -p /tmp/skopeo
++ printf %s ****
++ skopeo login docker.io --username dcontardo --password-stdin
+Login Succeeded!
++ printf %s ****
++ skopeo login ghcr.io --username dcontardo --password-stdin
+Login Succeeded!
++ skopeo copy docker-archive:/home/jenkins/agent/workspace/lab3-david-contardo/lab3.tar docker://dcontardo/lab3:david-contardo
+Getting image source signatures
+Copying blob sha256:ad27ce22b2e76aebed0f05a090e9eae8c177ca20895dd5cf757e021c2271cc35
+Copying blob sha256:7c732ed82ebdb575d2af70ebb84786b7421107ae929359e8e180c636040cbe88
+Copying blob sha256:74d97c428c51a828f9051a7a40a53ff1fc99e54fc30323ce36760701b0b7f711
+Copying blob sha256:a3b40bc0bbc6fc169200dd4069eac2195573e96112b64ad82c795d6ef3636719
+Copying blob sha256:978280728aec3b74b994b852d90b57f36496a2a26134fd73827e4b22dea3706a
+Copying blob sha256:6f3bd0caa7c25469ef663d37b3d333f7cda0b2887c78a1653af1f7bc6babef2d
+Copying blob sha256:91cd0ad090d0a4e5fe90e0a263d4af21c36863e99a3f0d81f7636317457c3251
+Copying blob sha256:f297cd1847dab4c76ef0584291aaae6f88110ad23df23ff7a75cafca461f6438
+Copying blob sha256:8c7e331f5ec78e95deb97c8a11ac1556617918f7d586e8040692c05da59a8c39
+Copying config sha256:ea16ef23d60e0f062e8506c7c754e3f7050c69d57390e45e8f35ae4260070b74
+Writing manifest to image destination
++ skopeo copy docker-archive:/home/jenkins/agent/workspace/lab3-david-contardo/lab3.tar docker://ghcr.io/dcontardo/lab3:david-contardo
+Getting image source signatures
+Copying blob sha256:ad27ce22b2e76aebed0f05a090e9eae8c177ca20895dd5cf757e021c2271cc35
+Copying blob sha256:a3b40bc0bbc6fc169200dd4069eac2195573e96112b64ad82c795d6ef3636719
+Copying blob sha256:7c732ed82ebdb575d2af70ebb84786b7421107ae929359e8e180c636040cbe88
+Copying blob sha256:6f3bd0caa7c25469ef663d37b3d333f7cda0b2887c78a1653af1f7bc6babef2d
+Copying blob sha256:978280728aec3b74b994b852d90b57f36496a2a26134fd73827e4b22dea3706a
+Copying blob sha256:74d97c428c51a828f9051a7a40a53ff1fc99e54fc30323ce36760701b0b7f711
+Copying blob sha256:91cd0ad090d0a4e5fe90e0a263d4af21c36863e99a3f0d81f7636317457c3251
+Copying blob sha256:f297cd1847dab4c76ef0584291aaae6f88110ad23df23ff7a75cafca461f6438
+Copying blob sha256:8c7e331f5ec78e95deb97c8a11ac1556617918f7d586e8040692c05da59a8c39
+Copying config sha256:ea16ef23d60e0f062e8506c7c754e3f7050c69d57390e45e8f35ae4260070b74
+Writing manifest to image destination
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (deploy)
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
++ sed '1,/^---$/d' /home/jenkins/agent/workspace/lab3-david-contardo/entrega.yaml
++ kubectl apply -f /home/jenkins/agent/workspace/lab3-david-contardo/deploy.yaml
+configmap/config-david-contardo unchanged
+secret/secret-david-contardo configured
+deployment.apps/app-david-contardo unchanged
+service/svc-david-contardo unchanged
++ kubectl rollout status deployment/app-david-contardo -n ns-david-contardo '--timeout=120s'
+deployment "app-david-contardo" successfully rolled out
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // podTemplate
+[Pipeline] End of Pipeline
+Finished: SUCCESS

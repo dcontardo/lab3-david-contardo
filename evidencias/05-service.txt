@@ -1,0 +1,2 @@
+NAME                 TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
+svc-david-contardo   ClusterIP   10.103.208.164   <none>        80/TCP    61m
