@@ -84,7 +84,8 @@ pipeline {
             steps {
                 container('kubectl') {
                     sh '''
-                        kubectl apply -f ${WORKSPACE}/entrega.yaml
+                        sed '1,/^---$/d' ${WORKSPACE}/entrega.yaml > ${WORKSPACE}/deploy.yaml
+                        kubectl apply -f ${WORKSPACE}/deploy.yaml
                         kubectl rollout status deployment/app-david-contardo \
                           -n ns-david-contardo \
                           --timeout=120s
