@@ -22,7 +22,7 @@ spec:
         - /busybox/sh
         - -c
       args:
-        - sleep 99d
+        - tail -f /dev/null
       workingDir: /home/jenkins/agent
 
     - name: kubectl
@@ -31,7 +31,7 @@ spec:
         - /bin/sh
         - -c
       args:
-        - sleep 99d
+        - tail -f /dev/null
       workingDir: /home/jenkins/agent
 
     - name: skopeo
@@ -40,5 +40,5 @@ spec:
         - /bin/sh
         - -c
       args:
-        - sleep 99d
+        - tail -f /dev/null
       workingDir: /home/jenkins/agent
